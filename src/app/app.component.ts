@@ -11,4 +11,5 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'man';
+  common_terms: string[] = ["Client","Proxy"," Target","Policy","Apigee"];
 }
