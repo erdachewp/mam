@@ -13,23 +13,24 @@ import { PersonService } from '../../services/person.service';
 export class AddPersonComponent {
   personArray: any[] = [];
   currentPersontID = "";
-  name:string = "";
+  lastName: string = "";
+  firstName:string = "";
   address:string = "";
   phone:string = "";
 
   constructor(private personService: PersonService){}
 
-  save(name: any) {
+  save(firstName: any) {
     if(this.currentPersontID == '')
     {
         this.register(); 
-        alert(name+" Student Registered Successfully");   
-        console.log(name +" is added to Students Collection.")    
+        alert(firstName+" Student Registered Successfully");   
+        console.log(firstName +" is added to Students Collection.")    
     }
       else
       {
       // this.UpdateRecords();
-       console.log(name +" is Updated in Collection.")    
+       console.log(firstName +" is Updated in Collection.")    
 
       }       
   }
@@ -38,7 +39,8 @@ export class AddPersonComponent {
     {
       let bodyData = 
       {
-        "name" : this.name,
+        "firstName" : this.firstName,
+        "lastName": this.lastName,
         "address" : this.address,
         "phone" : this.phone, 
       };
@@ -50,7 +52,8 @@ export class AddPersonComponent {
             console.log(bodyData);
             alert("Student Registered Successfully")
             //this.getAllEmployee();
-            this.name = '';
+            this.firstName = '';
+            this.lastName = '';
             this.address = '';
             this.phone  = '';
             // this.getAllStudent();

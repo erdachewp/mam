@@ -3,6 +3,7 @@ import { HttpClient, provideHttpClient, HttpHeaders } from '@angular/common/http
 // import { Observable } from 'rxjs';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Person } from '../interfaces/person';
 const options = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
@@ -11,17 +12,17 @@ const options = {
 })
 export class PersonService {
   // localPeopleUrl = "http://localhost:4500/people";
-  private peopleUrl = "http://localhost:8200/peoples/getAll";
+  private peopleUrl = "http://localhost:8200/peoples";
   private addPersonUrl = "http://localhost:8200/person/create";
   constructor(private http: HttpClient) { }
-  getPeople(): Observable<any[]>{
-    return this.http.get<any[]>(this.peopleUrl).pipe(      
+  getPeople(): Observable<Person[]>{
+    return this.http.get<Person[]>(this.peopleUrl).pipe(      
       catchError(
-        this.handlerError<string[]>('getPeople', []),)        
+        this.handlerError<Person[]>('getPeople', []),)        
     );
   }
-  add(person: any): Observable<any[]>{
-    return this.http.post<any>(this.addPersonUrl, person, options);
+  add(person: any): Observable<Person>{
+    return this.http.post<Person>(this.addPersonUrl, person, options);
   }
   update(person: any, id: string){
   }

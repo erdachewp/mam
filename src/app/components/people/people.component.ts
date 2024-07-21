@@ -24,7 +24,7 @@ export class PeopleComponent {
   }
   getPeople(): void{
     this.personService.getPeople().subscribe(
-(      (peoples: any) => this.peoples = peoples)
+      (peoples: any[]) => this.peoples = peoples
     );
   }
 }
