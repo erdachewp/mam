@@ -3,18 +3,29 @@ import { HttpClient, provideHttpClient, HttpHeaders } from '@angular/common/http
 // import { Observable } from 'rxjs';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+const options = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
-  private peopleUrl = "http://localhost:3500/people";
+  // localPeopleUrl = "http://localhost:4500/people";
+  private peopleUrl = "http://localhost:8200/peoples/getAll";
+  private addPersonUrl = "http://localhost:8200/person/create";
   constructor(private http: HttpClient) { }
-  getPeople(): Observable<string[]>{
-    return this.http.get<string[]>(this.peopleUrl).pipe(      
+  getPeople(): Observable<any[]>{
+    return this.http.get<any[]>(this.peopleUrl).pipe(      
       catchError(
         this.handlerError<string[]>('getPeople', []),)        
     );
   }
+  add(person: any): Observable<any[]>{
+    return this.http.post<any>(this.addPersonUrl, person, options);
+  }
+  update(person: any, id: string){
+  }
+  delete(){}
   private  handlerError <T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   
