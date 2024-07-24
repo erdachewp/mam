@@ -5,3 +5,4 @@ export interface Person{
     address?:string;
     phone?:string;
 }
+// contacts: mail,personal phone, work phone, email, social media

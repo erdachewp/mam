@@ -21,8 +21,8 @@ export class PersonService {
         this.handlerError<Person[]>('getPeople', []),)        
     );
   }
-  add(person: any): Observable<Person>{
-    return this.http.post<Person>(this.addPersonUrl, person, options);
+  add(person: any): Observable<Person[]>{
+    return this.http.post<Person[]>(this.addPersonUrl, person, options);
   }
   update(person: any, id: string){
   }
