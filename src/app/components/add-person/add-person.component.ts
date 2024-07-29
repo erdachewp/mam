@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PersonService } from '../../services/person.service';
+import { Contact } from '../../interfaces/contact';
 @Component({
   selector: 'app-add-person',
   standalone: true,
@@ -17,7 +18,7 @@ export class AddPersonComponent {
   firstName:string = "";
   address:string = "";
   phone:string = "";
-
+  contacts?: Contact[] = [];
   constructor(private personService: PersonService){}
 
   save(firstName: any) {
@@ -43,6 +44,7 @@ export class AddPersonComponent {
         "lastName": this.lastName,
         "address" : this.address,
         "phone" : this.phone, 
+        "contacts": this.contacts
       };
       this.personService.add(bodyData).subscribe(
         ((resultData: any)=>
