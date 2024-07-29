@@ -1,5 +1,7 @@
 <h2> {{ title }}</h2>
 <h3>Today's : {{ today  }}</h3>
+<app-sub-form (newSubForm)="addSubForm($event)"></app-sub-form>
+<!-- <app-hobby></app-hobby> -->
 <app-people></app-people>
 
 <!-- nav -->
@@ -21,3 +23,4 @@
         </div>
     </div>
   </div>
+<!-- <app-sub-form (newSubForm)="addSubForm($event)"></app-sub-form> -->

@@ -1,0 +1,8 @@
+<div class="container">
+    <p>Add Hobby</p>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <input formControlName="name" placeholder="name" type="text">
+        <input formControlName="frequency" placeholder="frequency" type="text">
+        <button type="submit">Add Hobby</button>
+    </form>
+</div>

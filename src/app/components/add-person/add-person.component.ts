@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PersonService } from '../../services/person.service';
 import { Contact } from '../../interfaces/contact';
+import { AddressComponent } from "../address/address.component";
 @Component({
   selector: 'app-add-person',
   standalone: true,
   imports: [
-    FormsModule
-  ],
+    FormsModule,
+    AddressComponent
+],
   templateUrl: './add-person.component.html',
   styleUrl: './add-person.component.css'
 })

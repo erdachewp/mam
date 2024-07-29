@@ -1,0 +1,17 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <input formControlName="name" placeholder="name" type="text">
+        <input formControlName="age" placeholder="age" type="number">
+        <div *ngIf="thereIsAtLeastOneItemInHobbiesArray">
+            <h5>Hobbies Added:</h5>
+            <div *ngFor="let hobby of hobbies">
+                <p>Hobby: {{ hobby.name }}, frequency: {{ hobby.frequency }}</p>
+            </div>
+        </div>
+
+        <app-hobby (newHobby)="addNewHobby($event)"></app-hobby>
+
+
+        <button type="submit" [disabled]="!form.invalid">Submit Sub Form</button>
+    </form>
+</div>
