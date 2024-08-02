@@ -1,7 +1,7 @@
 <div class="container mt-4" >
     <div class="card">
             <h1> Add A Person</h1>
-<form>
+<form [formGroup]="personForm" (ngSubmit)="register()">
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input 
@@ -22,7 +22,12 @@
         id="lastName" 
         placeholder="Enter Last Name"> 
     </div>
-
+    <div *ngIf="thereIsAtLeastOneItemInAddressesArray">
+      <h5>Addresses Added:</h5>
+      <div *ngFor="let address of addresses">
+        <p>{{ address.street }} {{ address.city }} {{ address.state }} {{ address.zip }}</p>
+      </div>
+    </div>
     <div class="form-group">
         <label for="address">Address</label>
         <input 
@@ -45,8 +50,8 @@
           placeholder="Enter Phone"> 
 
       </div>
-      <app-address></app-address>
-    <button type="submit" (click)="save(firstName)" class="btn btn-primary">Submit</button>
+      <app-address (newAddress)="addnewAddress($event)"></app-address>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
 </div>

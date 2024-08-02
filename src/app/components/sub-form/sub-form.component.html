@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="false">
     <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
         <input formControlName="name" placeholder="name" type="text">
         <input formControlName="age" placeholder="age" type="number">

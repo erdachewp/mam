@@ -12,7 +12,6 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './sub-form.component.css'
 })
 export class SubFormComponent {
-
   constructor(private fb: FormBuilder){}
   @Output('newSubForm') submitFormObjectToParent: EventEmitter<SubForm> = new EventEmitter<SubForm>();
   form: FormGroup = this.fb.group({
@@ -24,7 +23,6 @@ export class SubFormComponent {
     return this.form.get('hobbies')?.value;
   }
 
-  
   addNewHobby(hobby: Hobby){
     const control = this.form.get('hobbies') as FormArray;
     control.push(this.fb.group(hobby));
