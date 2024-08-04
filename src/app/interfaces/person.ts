@@ -8,6 +8,6 @@ export interface Person{
     address?:string;
     phone?:string;
     contacts?: Contact[];
-    Addresses?: Address[];
+    addresses?: Address[];
 }
 // contacts: mail,personal phone, work phone, email, social media

@@ -26,12 +26,12 @@ export class AddPersonComponent {
   //   phone: new FormControl(),
   //   contacts: new FormControl(),
   //   address: new FormControl(),
-  //   addresses: new FormGroup({
+  //   addresses: new FormGroup([{
   //     street: new FormControl(),
   //     city: new FormControl(),
   //     state: new FormControl(),
   //     zip: new FormControl(),
-  //   }),
+  //   }]),
   // })
   currentPersontID = "";
   lastName: string = "";
@@ -60,6 +60,9 @@ export class AddPersonComponent {
     const control = this.personForm.get('addresses') as FormArray;
     //this.street = address.street;
     control.push(this.fb.group(address));
+    console.log(address)
+    console.log(address.city)
+    console.log(address.state)
   }
   emptyAddresses(){
     const control = this.personForm.get("addresses") as FormArray
@@ -83,7 +86,8 @@ export class AddPersonComponent {
     {
         this.register(); 
         alert(firstName+" Student Registered Successfully");   
-        console.log(firstName +" is added to Students Collection.")    
+        console.log(firstName +" is added to Students Collection.")   
+         
     } else{
       // this.UpdateRecords();
        console.log(firstName +" is Updated in Collection.")    
@@ -92,6 +96,9 @@ export class AddPersonComponent {
 
   register()
     {
+      //for(let i =0; i < this.personForm.get('addresses')?.length;i++){
+      //   "street": this.personForm.get('addresses')!.['i'].value.street
+      // }
       let bodyData = 
       {
         "firstName" : this.firstName,
@@ -99,7 +106,27 @@ export class AddPersonComponent {
         "address" : this.address,
         "phone" : this.phone, 
         "contacts": this.contacts,  
-            
+        // "city": this.personForm.get('addresses')?.get('city')?.value,
+         "addresses": this.personForm.get('addresses')?.get(`${  this.addnewAddress({
+          street: "", city: "", state: "", zip: ""
+         })}`)
+        //"addresses": this.personForm.get('addresses')
+        // "street": this.personForm.get('addresses')?.get('0'),
+        // "city": this.personForm.get('addresses')?.get('city').value,
+        // "state": this.personForm.get('addresses')?.get('state'),
+        // "zip": this.personForm.get('addresses')?.get('zip'),
+        // // "addresses": this.personForm.get('addresses').value
+        // "addresses": this.personForm.get('addresses')
+        // { addresses: address.street
+        //   for(let i = 0; i < this.personForm.get('addresses')?.getRawValue() ;i++){
+        //     "street" = this.personForm.get('addresses')?.value.street,
+        //   }
+        // }
+
+        // "street": this.personForm.get('addresses')?.value.street,
+        // "city": this.personForm.get(['addresses'])?.value.city,
+        // "state": this.personForm.get(['addresses'])?.value.state,
+        // "zip": this.personForm.get(['addresses'])?.value.zip
       };
 
       this.personService.add(bodyData).subscribe(

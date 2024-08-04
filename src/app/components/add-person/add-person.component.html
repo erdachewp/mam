@@ -22,12 +22,6 @@
         id="lastName" 
         placeholder="Enter Last Name"> 
     </div>
-    <div *ngIf="thereIsAtLeastOneItemInAddressesArray">
-      <h5>Addresses Added:</h5>
-      <div *ngFor="let address of addresses">
-        <p>{{ address.street }} {{ address.city }} {{ address.state }} {{ address.zip }}</p>
-      </div>
-    </div>
     <div class="form-group">
         <label for="address">Address</label>
         <input 
@@ -48,8 +42,14 @@
           [ngModelOptions]="{standalone: true}" 
           id="phone" 
           placeholder="Enter Phone"> 
-
       </div>
+      <div *ngIf="thereIsAtLeastOneItemInAddressesArray">
+        <h5>Addresses Added:</h5>
+        <div *ngFor="let address of addresses">
+          <p>{{ address.street }} {{ address.city }} {{ address.state }} {{ address.zip }}</p>
+        </div>
+      </div>
+  
       <app-address (newAddress)="addnewAddress($event)"></app-address>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
