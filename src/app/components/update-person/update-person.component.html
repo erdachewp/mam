@@ -1,0 +1,59 @@
+<div class="jumbotron">
+    <h1 class="text-center">Edit and Update Books and their descriptions Form</h1>
+</div>
+<div
+  *ngIf="alert" 
+  class="alert alert-success alert-dismissible fade show" 
+  role="alert"
+>
+  <strong>Success !</strong> Your data is updated successfully !
+  <button
+    (click)="closeAlert()" 
+    type="button" 
+    class="close" 
+    data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  <form [formGroup]="updatePersonForm" (ngSubmit)="update($event)">
+      <div class="formGroup">
+        <label id="firstName">First Name</label>
+        <input
+         type="text" 
+         name="firstName"
+         class="formControl" 
+         placeholder=" " 
+         formControlName="firstName" required>
+      </div>
+      <div class="formGroup">
+        <label id="lastName">Last Name</label>
+        <input
+         type="text" 
+         name="lastName"
+         class="formControl" 
+         placeholder=" " 
+         formControlName="lastName">
+      </div>
+      <div class="formGroup">
+        <label id="address">Address</label>
+        <input
+         type="text" 
+         name="address"
+         class="formControl" 
+         placeholder=" " 
+         formControlName="address">
+      </div>
+      <div class="formGroup">
+        <label id="phone">Phone </label>
+        <input
+         type="text" 
+         name="phone"
+         class="formControl" 
+         placeholder="" 
+         formControlName="phone">
+      </div>
+      <button type="submit" class="btn btn-primary">update</button>
+    </form>
+  
+
+
