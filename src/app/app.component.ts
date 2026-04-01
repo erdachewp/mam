@@ -47,17 +47,17 @@ export class AppComponent {
     // );
   }
   ngOnInit(){
-    this.getCors();
+    // this.getCors();
   }
   logout(){
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
-  getCors(){
-    this.http.get('http://localhost:6000/x-cors').subscribe(
-      data => { console.log(data)}
-    )
-  }
+  // getCors(){
+  //   this.http.get('http://localhost:8200/x-cors').subscribe(
+  //     data => { console.log(data)}
+  //   )
+  // }
   addSubForm(subForm: SubForm){
     // const control = this.form.get('hobbies');
     // let totalItems = control;

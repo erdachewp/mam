@@ -21,10 +21,16 @@ export class PersonService {
         this.handlerError<Person[]>('getPeople', []),)        
     );
   }
+  getCurrentPerson(_id: string): Observable<Person>{
+    const url = `${this.peopleUrl}/${_id}`;
+    return this.http.get<Person>(url);
+  }
   add(person: any): Observable<Person[]>{
     return this.http.post<Person[]>(this.addPersonUrl, person, options);
   }
-  update(person: any, id: string){
+  update(person: any, _id: string): Observable<any>{
+    const url = `${this.peopleUrl}/${_id}`
+     return this.http.put(url, person);
   }
   delete(){}
   private  handlerError <T>(operation = 'operation', result?: T) {

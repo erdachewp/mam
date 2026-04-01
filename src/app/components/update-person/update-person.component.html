@@ -15,24 +15,28 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-  <form [formGroup]="updatePersonForm" (ngSubmit)="update($event)">
+  <form [formGroup]="updatePersonForm" (ngSubmit)="update()">
       <div class="formGroup">
         <label id="firstName">First Name</label>
         <input
-         type="text" 
-         name="firstName"
-         class="formControl" 
-         placeholder=" " 
-         formControlName="firstName" required>
+          type="text" 
+          name="firstName"
+          id="firstName"
+          class="formControl" 
+          formControlName="firstName"
+          placeholder="First name" 
+        >
       </div>
       <div class="formGroup">
         <label id="lastName">Last Name</label>
         <input
-         type="text" 
-         name="lastName"
-         class="formControl" 
-         placeholder=" " 
-         formControlName="lastName">
+          type="text" 
+          name="lastName"
+          id="lastName"
+          formControlName="lastName"
+          class="formControl" 
+          placeholder="Last name" 
+        >
       </div>
       <div class="formGroup">
         <label id="address">Address</label>
@@ -40,7 +44,7 @@
          type="text" 
          name="address"
          class="formControl" 
-         placeholder=" " 
+         placeholder="Address" 
          formControlName="address">
       </div>
       <div class="formGroup">
@@ -49,7 +53,7 @@
          type="text" 
          name="phone"
          class="formControl" 
-         placeholder="" 
+         placeholder="Telephone" 
          formControlName="phone">
       </div>
       <button type="submit" class="btn btn-primary">update</button>

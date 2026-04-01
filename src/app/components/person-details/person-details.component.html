@@ -1,0 +1,7 @@
+<div *ngIf="person">
+    <h3>id: {{ person._id}}</h3>
+    <p>Last name: {{ person.lastName }}</p>
+    <p>phone: {{ person.phone }}</p>
+    <p>address: {{ person.address }}</p>
+    <button routerLink="/update/{{person._id}}">Edit</button>
+</div>

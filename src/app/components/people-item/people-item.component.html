@@ -1,0 +1,9 @@
+<div *ngIf="person">
+    <h3 (click)="onSelect(person)"> {{ person.firstName }}</h3>
+        <!-- <app-person-details routerLink="details"></app-person-details> -->
+          <app-person-details [person]="selectedPerson"></app-person-details>
+</div>
+<!-- routerLink="details" -->
+<!-- <app-person-details></app-person-details> -->
+ 
+    <!-- <h3 (click)="onSelect(person)">{{ person.firstName }}</h3> -->

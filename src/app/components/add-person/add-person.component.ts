@@ -132,12 +132,12 @@ export class AddPersonComponent {
       this.personService.add(bodyData).subscribe(
         ((resultData: any)=>
           {
-            console.log("Something is happening!!!")
+            console.log("Person is added successfully!!!")
             console.log(resultData);
             // console.log(bodyData.addresses);
             console.log(bodyData);
 
-            alert(resultData+ "\n Student Registered Successfully")
+            alert(resultData+ "\n Person Registered Successfully")
             //this.getAllEmployee();
             // this.firstName = '';
             // this.lastName = '';
@@ -145,7 +145,7 @@ export class AddPersonComponent {
             // this.phone  = '';
           }
         ),
-        (error)=> {  console.log("something is wrong!!!")},
+        (error)=> {  console.log("something went wrong while adding person!!!")},
         () =>    { console.log("Process is complete!")}
       );
     }
