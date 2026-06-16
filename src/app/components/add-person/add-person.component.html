@@ -1,7 +1,7 @@
 <div class="container mt-4" >
     <div class="card">
             <h1> Add A Person</h1>
-<form [formGroup]="personForm" (ngSubmit)="register()">
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input 
@@ -10,7 +10,8 @@
         [ngModelOptions]="{standalone: true}"  
         class="form-control" 
         id="firstName" 
-        placeholder="Enter First Name"> 
+        required
+        placeholder="First name"> 
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
@@ -20,7 +21,7 @@
         [ngModelOptions]="{standalone: true}"  
         class="form-control" 
         id="lastName" 
-        placeholder="Enter Last Name"> 
+        placeholder="Last name"> 
     </div>
     <div class="form-group">
         <label for="address">Address</label>
@@ -30,9 +31,8 @@
           [(ngModel)]="address" 
           [ngModelOptions]="{standalone: true}" 
           id="address" 
-          placeholder="Enter Address"> 
+          placeholder="Address"> 
       </div>
-
       <div class="form-group">
         <label for="phone">Phone</label>
         <input 
@@ -41,16 +41,56 @@
           [(ngModel)]="phone" 
           [ngModelOptions]="{standalone: true}" 
           id="phone" 
-          placeholder="Enter Phone"> 
+          placeholder="Phone"> 
       </div>
-      <div *ngIf="thereIsAtLeastOneItemInAddressesArray">
+
+      <h3>Addresses</h3>
+
+      <button (click)="addAddress()"> addressForm </button>
+      <div formArrayName="addresses">
+        <div 
+          *ngFor="let addressGroup of addresses.controls;
+          let i = index"
+          [formGroupName]="i"
+          >
+          <label id="street">Street</label>
+          <input 
+            type="text" 
+            id="street" 
+            formControlName="street" 
+            name="street" /><br>
+
+          <label id="city">City</label>
+          <input 
+            type="text" 
+            id="city" 
+            formControlName="city" 
+            name="city" /><br>
+
+          <label id="state">State</label>
+          <input 
+            type="text" 
+            id="state" 
+            formControlName="state" 
+            name="state" /><br>
+
+          <label id="zip">Zip</label>
+          <input 
+            type="text" 
+            id="zip" 
+            formControlName="zip" 
+            name="zip" />
+        </div>
+      </div>
+
+      <!-- <div *ngIf="thereIsAtLeastOneItemInAddressesArray">
         <h5>Addresses Added:</h5>
         <div *ngFor="let address of addresses">
           <p>{{ address.street }} {{ address.city }} {{ address.state }} {{ address.zip }}</p>
         </div>
-      </div>
+      </div> -->
   
-      <app-address (newAddress)="addnewAddress($event)"></app-address>
+      <!-- <app-address (newAddress)="addnewAddress($event)"></app-address> -->
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

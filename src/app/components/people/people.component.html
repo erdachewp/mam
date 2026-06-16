@@ -1,7 +1,13 @@
 <!-- <app-add-person *ngIf="1"></app-add-person> -->
 <!-- <h2>People</h2> -->
-
+   
+<!-- <ol>
+        <li  *ngFor="let person of people">{{person.firstName}}
+            <div *ngIf="person.name">{{ person.name}}</div>
+        </li>
+    </ol> -->
 <!-- <ul>
+
     <li *ngFor="let person of peoples">
         <span *ngIf="person.name">{{person.name}}</span>
         {{ person.firstName }}</li>
@@ -9,6 +15,7 @@
 
 <!-- <cdk-virtual-scroll-viewport itemSize="20" class="example-viewport"> -->
     <!-- <div *ngFor="let person of people" class="example-item"> -->
+        <h3>The Number of People {{ people.length}}</h3>
 <app-people-item *ngFor="let person of people" [person]="person"></app-people-item>
         <!-- <span *ngIf="person.name">{{person.name}}</span> -->
         <!-- {{person.firstName}} -->
@@ -17,3 +24,4 @@
   
 <!-- <app-people-item></app-people-item>
 <app-person-details></app-person-details> -->
+

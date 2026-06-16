@@ -1,7 +1,17 @@
 <div *ngIf="person">
-    <h3>id: {{ person._id}}</h3>
+    <!-- <h3>id: {{ person._id}}</h3> -->
     <p>Last name: {{ person.lastName }}</p>
+    <!-- <div *ngIf="person.name">
+        {{ person.name }}
+    </div> -->
     <p>phone: {{ person.phone }}</p>
     <p>address: {{ person.address }}</p>
-    <button routerLink="/update/{{person._id}}">Edit</button>
+    <h3>Current Address</h3>
+    <div *ngFor="let address of person.addresses">
+        <p>street: {{ address.street }}</p>
+        <p>address: {{ address.city }}</p>
+        <p>address: {{ address.state }}</p>
+        <p>address: {{ address.zip }}</p>
+    </div>
+    <button routerLink="/update/{{ person._id }}">Edit</button>
 </div>

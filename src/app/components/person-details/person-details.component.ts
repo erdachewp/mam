@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Person } from '../../interfaces/person';
 import { RouterLink } from "@angular/router";
@@ -6,7 +6,7 @@ import { RouterLink } from "@angular/router";
 @Component({
   selector: 'app-person-details',
   standalone: true,
-  imports: [NgIf, RouterLink],
+  imports: [NgIf, RouterLink, NgFor],
   templateUrl: './person-details.component.html',
   styleUrl: './person-details.component.css'
 })

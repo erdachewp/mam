@@ -11,8 +11,10 @@ import { NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [
     FormsModule,
-    AddressComponent,
-    ReactiveFormsModule, NgFor, NgIf
+    ReactiveFormsModule,
+    NgFor,
+    // NgIf
+    // AddressComponent,
 ],
   templateUrl: './add-person.component.html',
   styleUrl: './add-person.component.css'
@@ -41,20 +43,48 @@ export class AddPersonComponent {
   // addresses: Address[]= [];
   phone:string = "";
   contacts?: Contact[] = [];
-  personForm: FormGroup = this.fb.group({
-    firstName:[new FormControl()],
-    lastName: [new FormControl()],
-    phone: [new FormControl()],
-    address: [new FormControl()],
-    addresses: this.fb.array([], this.minFormArrayLength(2))
-  });
+  personForm!: FormGroup; 
+  addressForm: string = 'Add Address Form';
+  // =  this.fb.group({
+  //   firstName:[new FormControl()],
+  //   lastName: [new FormControl()],
+  //   phone: [new FormControl()],
+  //   address: [new FormControl()],
+  //   addresses: this.fb.array([], this.minFormArrayLength(2))
+  // });
   
   constructor(
     private personService: PersonService,
     private fb: FormBuilder
   ){}
-  get addresses(): Address[]{
-    return this.personForm.get('addresses')?.value;
+  ngOnInit(){
+    this.personForm = new FormGroup({
+      firstName:new FormControl(),
+      lastName: new FormControl(),
+      phone: new FormControl(),
+      address: new FormControl(),
+      addresses: this.fb.array([], this.minFormArrayLength(2))
+    });
+  }
+  get addresses(): FormArray{
+    return this.personForm.get('addresses') as FormArray;
+    // return this.personForm.get('addresses')?.value;
+  }
+  private createAddressFormGroup(address: Address): FormGroup{
+    return this.fb.group({
+      street: [address.street],
+      city: [address.city],
+      state: [address.state],
+      zip: [address.zip]
+    });
+  }
+  addAddress(){
+    this.addresses.push(this.createAddressFormGroup({ street: '', city: '', state: '', zip: ''}))
+  }
+  private setAddresses(addresses: Address[]){
+    addresses.forEach(address =>{
+      this.addresses.push(this.createAddressFormGroup(address))
+    })
   }
   addnewAddress(address: Address){
     const control = this.personForm.get('addresses') as FormArray;
@@ -84,7 +114,7 @@ export class AddPersonComponent {
   save(firstName: any) {
     if(this.currentPersontID == '')
     {
-        this.register(); 
+        this.onSubmit(); 
         alert(firstName+" Student Registered Successfully");   
         console.log(firstName +" is added to Students Collection.")   
          
@@ -94,7 +124,7 @@ export class AddPersonComponent {
       }       
   }
 
-  register()
+  onSubmit()
     {
       //for(let i =0; i < this.personForm.get('addresses')?.length;i++){
       //   "street": this.personForm.get('addresses')!.['i'].value.street
